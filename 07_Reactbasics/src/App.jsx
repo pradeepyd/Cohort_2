@@ -16,31 +16,34 @@ function App() {
       description: "STUDY at morning 4 AM"
     }
   ])
-  function addTodo(){
-    setTodos([...todos,{
-      title :"new todo added",
-      description: "description of new todo "
-    }])
-  }
+  console.log("app got callled");
   
-  return (
-    <div>
-      <button onClick={addTodo}>Get a random Todo</button>
-     {/* <CustomButton count={count} setCount={setCount}></CustomButton> */}
-    {todos.map(function(todo){
-      return <Todo title={todo.title} description={todo.description}/>
-    })}
-    </div>
-  )
-}
-
-function Todo(props){
+ function addTodo(){
+  console.log("addtodo got called");
+  setTodos([...todos,{
+    title:"new todo added",
+    description:"description of new todo"
+  }])
+ }
   return <div>
-    <h1>{props.title}</h1>
-    <h2>{props.description}</h2>
+    <button onClick={addTodo}>Add a random todo</button>
+  {todos.map(function(todo){
+    return <Todo title={todo.title} description={todo.description}></Todo>
+  })}
+  <Dummybutton></Dummybutton>
   </div>
 }
-
+function Dummybutton(){
+  console.log("re render");
+ return <button>asd</button>
+}
+function Todo(params) {
+  console.log("todo got called ");
+  return <div>
+    <h1>{params.title}</h1>
+    <h2>{params.description}</h2>
+  </div>
+}
 function CustomButton(props){
 
   function clickHandler(){
