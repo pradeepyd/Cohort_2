@@ -4,14 +4,17 @@ function App() {
   const [count, setCount] = useState(0);
   const [todos, setTodos] = useState([
     {
+      id:1,
       title: "go to gym",
       description: "at morning 6 AM"
     },
     {
+      id:2,
       title: "go to market",
       description: "at evening 6 PM"
     },
     {
+      id:3,
       title: "Study DSA",
       description: "STUDY at morning 4 AM"
     }
@@ -28,7 +31,7 @@ function App() {
   return <div>
     <button onClick={addTodo}>Add a random todo</button>
   {todos.map(function(todo){
-    return <Todo title={todo.title} description={todo.description}></Todo>
+    return <Todo keys={todo.id} title={todo.title} description={todo.description}></Todo>
   })}
   <Dummybutton></Dummybutton>
   </div>
