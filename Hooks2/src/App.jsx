@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState ,memo} from "react";
+import { useCallback, useMemo, useState, memo, useRef, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -6,10 +6,17 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState(1);
+  const [incomeTax, setIncomeTax] = useState(20000);
+  const divRef = useRef();
 
-const inputFunction = useCallback(() => {
-  console.log("hi there");
-},[])
+  useEffect(() => {
+    setTimeout(() => {
+      divRef.current.innerHTML = 10;
+    }, 5000);
+  }, []);
+  const inputFunction = useCallback(() => {
+    console.log("hi there");
+  }, []);
 
   const sum = useMemo(() => {
     let finalSum = 0;
@@ -31,15 +38,22 @@ const inputFunction = useCallback(() => {
       <br></br>
       sum of 1 to {inputValue} is {sum}
       <br></br>
-      <button onClick={function () {
+      <button
+        onClick={function () {
           setCount(count + 1);
-        }}>counter ({count})</button>
-      <ButtonComponent inputFunction = {inputFunction}></ButtonComponent>  
+        }}
+      >
+        counter ({count})
+      </button>
+      <ButtonComponent inputFunction={inputFunction}></ButtonComponent>
+      <div>
+        hi your income tax is <div ref={divRef}>{incomeTax}</div>
+      </div>
     </div>
   );
 }
 
-const ButtonComponent = memo(function ({inputFunction}) {
+const ButtonComponent = memo(function ({ inputFunction }) {
   console.log("re rendered");
   return <div>hi there</div>;
 });
