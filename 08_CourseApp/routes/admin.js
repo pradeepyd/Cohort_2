@@ -7,9 +7,7 @@ const router = express.Router();
 // Admin Routes
 router.post("/signup", async (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).send({ message: "All fields are required!" });
-  }
+   
   try {
     await Admin.create({
       username: username,
@@ -37,11 +35,9 @@ router.post("/courses", adminMiddleware, async (req, res) => {
       description: description,
       price: price,
       imageLink: imageLink,
-      published: true,
-      owner: admin.username,
+       
     });
-    admin.courses.push(newCourse._id);
-    await admin.save();
+    
     return res.status(201).send({
       message: "Course created successfully",
       courseId: newCourse._id,
@@ -56,8 +52,8 @@ router.post("/courses", adminMiddleware, async (req, res) => {
 router.get("/courses", adminMiddleware, async (req, res) => {
   // Implement fetching all courses logic
   try {
-    const admin = await Admin.findById(req.admin._id).populate("courses");
-    return res.status(200).send({ courses: admin.courses });
+    const response = await Course.find({})
+    return res.status(200).send({ courses: response });
   } catch (error) {
     return res
       .status(500)
