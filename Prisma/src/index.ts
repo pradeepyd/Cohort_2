@@ -7,11 +7,17 @@ const prisma = new PrismaClient();
   lastName:string
  }
 
- async function getUser(username:string){
-  const res = await prisma.user.findMany({
-    where:{email:username},
+ async function getUserAndTodo(userId:number){
+  const res = await prisma.todo.findMany({
+    where:{userId:userId},
+    select:{
+      id:true,
+      title:true,
+      description:true,
+      user:true
+    }
   })
   console.log(res)
  }
 
- getUser("pradeep@gmail.com")
+ getUserAndTodo(1)
