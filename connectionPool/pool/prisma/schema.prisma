@@ -1,0 +1,18 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model log {
+  id  Int  @id @default(autoincrement())
+  level String
+  messages String
+  meta Json
+}
