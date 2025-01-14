@@ -11,11 +11,13 @@ export default  function Home() {
       <div className="flex justify-center">
          <div className="border p-8 rounded">
            <div>
-      hello there
+                hello there
            </div>
-from root
+                from root
          </div>
       </div>
     </div>
   );
 }
+
+

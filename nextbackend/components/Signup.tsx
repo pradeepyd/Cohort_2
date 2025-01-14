@@ -3,6 +3,7 @@ import { Button } from "./ButtonComp";
 import axios from "axios";
 import { ChangeEventHandler,useState } from "react";
 import { useRouter } from "next/navigation";
+import { signup } from "@/app/actions/user";
 
 
 export const SignComponent = () => {
@@ -33,10 +34,11 @@ export const SignComponent = () => {
             />
             <button
                 onClick={async() => {
-                 await axios.post("http://localhost:3000/api/user",{
-                        username,
-                        password
-                    })
+                  signup(username,password)
+                //  await axios.post("http://localhost:3000/api/user",{
+                //         username,
+                //         password
+                //     })
                     router.push("/");
                 }}
                 type="button"
