@@ -3,6 +3,8 @@ import { createRoute } from '@hono/zod-openapi'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { ParamsSchema } from './input'
 import { UserSchema } from './output'
+import { Hono } from 'hono'
+import { swaggerUI, SwaggerUI } from '@hono/swagger-ui'
 
 
 const getRoute = createRoute({
@@ -42,5 +44,7 @@ app.doc('/doc', {
     title: 'My API',
   },
 })
+
+app.get('/ui',swaggerUI({url:'/doc'}))
 
 export default app
